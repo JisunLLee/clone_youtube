@@ -1,64 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useLocation, useParams } from 'react-router';
-import getYoutube from '../../APIs/getYoutube';
-import useAxios from '../../APIs/uesAxios';
 import SearchHeader from '../search_header/searchHeader';
 import style from './detail.module.css';
 import List from '../video_list/list';
 import Comments from '../comment_list_n_item/comments';
-const Detail = () => {
+const Detail = ({ youtube }) => {
   const { id } = useParams();
-  const [statistics_params, setStatistics_params] = useState('');
-  const [comments_params, setComments_params] = useState('');
   const [snippet, setSnippet] = useState();
   const [statistics, setStatistics] = useState();
   const [comments, setComments] = useState();
   const location = useLocation();
   console.log('id', id);
-  useEffect(() => {
-    setStatistics_params(
-      getYoutube({
-        kind: 'videos',
-        part: 'statistics',
-        id: id,
-      })
-    );
-    setComments_params(
-      getYoutube({
-        kind: 'commentThreads',
-        videoId: id,
-      })
-    );
-  }, []);
-
-  const { response } = useAxios({
-    url: statistics_params,
-    method: 'get',
-    dataType: 'json',
-  });
-  const comment_threads = useAxios({
-    url: comments_params,
-    method: 'get',
-    dataType: 'json',
-  });
 
   useEffect(() => {
-    if (response) {
-      console.log('response??', response);
-      setStatistics(response.items[0].statistics);
-      setSnippet(response.items[0].snippet);
-    }
-  }, [response]);
+    const getData = async () => {
+      Promise.all([youtube.detail(id), youtube.comment(id)]).then(function (
+        results
+      ) {
+        setStatistics(results[0].data.items[0].statistics);
+        setSnippet(results[0].data.items[0].snippet);
+        setComments(results[1].data.items);
+      });
+    };
+    getData();
+  }, [location, id, youtube]);
 
-  useEffect(() => {
-    if (comment_threads.response) {
-      setComments(comment_threads.response.items);
-    }
-  }, [comment_threads.response]);
-
-  console.log('response', response);
-  console.log('comments', comments);
   return (
     <div className={style.main}>
       <SearchHeader />
@@ -89,7 +56,7 @@ const Detail = () => {
                   <hr />
                   <div className={style.contents_wrap}>
                     <div className={style.channel_wrap}>
-                      <img></img>
+                      <img alt="channel"></img>
                       <h3>{snippet.channelTitle}</h3>
                     </div>
                     <div>{snippet.description}</div>

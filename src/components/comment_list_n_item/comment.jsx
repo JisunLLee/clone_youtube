@@ -4,7 +4,6 @@ import style from './comment.module.css';
 const Comment = (props) => {
   const { likeCount, authorDisplayName, publishedAt, textDisplay } =
     props.comment.topLevelComment.snippet;
-  console.log('likeCount', likeCount);
   const datetime = beforeTimeMaker(publishedAt);
   return (
     <div className={style.comment}>
