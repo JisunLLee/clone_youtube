@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import style from './searchHeader.module.css';
 const SearchHeader = (props) => {
   const [input, setInput] = useState();
+  const navigate = useNavigate();
+  const LinkToMain = () => {
+    navigate(`/${input}`);
+  };
+  const onKeyPress = (e) => {
+    if (e.key === 'Enter') LinkToMain();
+  };
   return (
     <div className={style.body}>
       <div className={style.side}>
@@ -16,10 +23,9 @@ const SearchHeader = (props) => {
           className={style.search_input}
           type="text"
           onInput={(e) => setInput(e.target.value)}
-        ></input>
-        <Link to={`/${input}`}>
-          <button className={style.search_btn}></button>
-        </Link>
+          onKeyPress={onKeyPress}
+        />
+        <button className={style.search_btn} onClick={LinkToMain} />
       </div>
       <div className={style.side} />
     </div>
