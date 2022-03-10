@@ -10,9 +10,9 @@ import { useLocation, useParams } from 'react-router';
 const Main = (props) => {
   const location = useLocation();
 
-  const [youtube_params, setYoutube_params] = useState('');
-  const [params, setParams] = useState('');
-
+  const [youtube_params, setYoutube_params] = useState();
+  const [params, setParams] = useState();
+  const [videos, setVideos] = useState();
   useEffect(() => {
     location.pathname === '/'
       ? setParams({
@@ -31,7 +31,8 @@ const Main = (props) => {
   }, [location]);
 
   useEffect(() => {
-    setYoutube_params(getYoutube(params));
+    params ? setYoutube_params(getYoutube(params)) : setYoutube_params();
+    console.log('[params] changed');
   }, [params]);
 
   const { response, error, finish } = useAxios({
@@ -40,18 +41,14 @@ const Main = (props) => {
     dataType: 'json',
   });
 
+  useEffect(() => {
+    response ? setVideos(response.items) : setVideos();
+  }, [response]);
+
   return (
     <div className={style.main}>
       <SearchHeader />
-      {finish ? (
-        response ? (
-          <List videos={response.items} />
-        ) : (
-          <div>Loading...</div>
-        )
-      ) : (
-        <div>Loading...</div>
-      )}
+      {videos ? <List videos={videos} /> : <div>Loading...</div>}
     </div>
   );
 };

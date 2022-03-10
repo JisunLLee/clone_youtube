@@ -10,6 +10,8 @@ const useAxios = ({ url, method, body = null, headers = null }) => {
 
     const fetchData = () => {
         setFinish(false);
+        if(url){
+            console.log("fetchData", url);
         axios[method](url, JSON.parse(headers), JSON.parse(body))
             .then((res) => {
                 console.log("response",response);
@@ -22,6 +24,7 @@ const useAxios = ({ url, method, body = null, headers = null }) => {
             .finally(() => {
                 setFinish(true);
             });
+        }
     };
 
     useEffect(() => {
