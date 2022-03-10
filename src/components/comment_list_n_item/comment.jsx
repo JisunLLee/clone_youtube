@@ -20,7 +20,7 @@ const Comment = (props) => {
         <div>
           <span>
             <span className={style.like_btn}>
-              <img className={style.like_btn} src="/like.png" />
+              <img className={style.like_btn} src="/images/like.png" />
             </span>
             <span>{likeCount}</span>
           </span>
