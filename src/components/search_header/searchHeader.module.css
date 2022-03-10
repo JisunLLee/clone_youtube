@@ -36,7 +36,7 @@
   opacity: 0.8;
 }
 .youtube_btn {
-  background-image: url(../../public/youtube.png);
+  background-image: url(../../../public/youtube.png);
   width: 4.5rem;
   height: 4rem;
   background-color: transparent;
@@ -58,7 +58,7 @@
   width: 4.5rem;
   background-color: rgb(48, 48, 48);
   background-size: 60%;
-  background-image: url(../../public/search.png);
+  background-image: url(../../../public/search.png);
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
