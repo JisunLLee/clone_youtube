@@ -15,7 +15,7 @@ const Detail = () => {
   const [statistics, setStatistics] = useState();
   const [comments, setComments] = useState();
   const location = useLocation();
-  console.log('location', location);
+  console.log('id', id);
   useEffect(() => {
     setStatistics_params(
       getYoutube({
@@ -45,6 +45,7 @@ const Detail = () => {
 
   useEffect(() => {
     if (response) {
+      console.log('response??', response);
       setStatistics(response.items[0].statistics);
       setSnippet(response.items[0].snippet);
     }

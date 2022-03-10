@@ -6,14 +6,13 @@ import style from './listItem.module.css';
 const ListItem = (props) => {
   const { title, channelTitle, publishTime, thumbnails } = props.video.snippet;
   const time = beforeTimeMaker(publishTime);
-
   return (
     <Link
       style={{ textDecoration: 'none', color: 'black' }}
-      to={`/detail/${props.video.id.videoId}`}
+      to={`/detail/${props.video.id.videoId ?? props.video.id}`}
       state={{ videos: props.videos }}
     >
-      <div className={style.list_item}>
+      <li className={style.list_item}>
         <img className={style.thumbnail} src={thumbnails.medium.url} />
         <div className={style.detail}>
           <img className={style.channel_img} />
@@ -29,7 +28,7 @@ const ListItem = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </li>
     </Link>
   );
 };
