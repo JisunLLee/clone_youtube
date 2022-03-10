@@ -1,5 +1,5 @@
 import React from 'react';
-import { beforeTimeMaker } from '../Utils';
+import { beforeTimeMaker } from '../../Utils';
 import style from './comment.module.css';
 const Comment = (props) => {
   const { likeCount, authorDisplayName, publishedAt, textDisplay } =

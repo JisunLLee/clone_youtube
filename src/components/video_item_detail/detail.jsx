@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { useLocation, useParams } from 'react-router';
-import getYoutube from '../APIs/getYoutube';
-import useAxios from '../APIs/uesAxios';
-import SearchHeader from './searchHeader';
+import getYoutube from '../../APIs/getYoutube';
+import useAxios from '../../APIs/uesAxios';
+import SearchHeader from '../search_header/searchHeader';
 import style from './detail.module.css';
-import List from './list';
-import Comments from './comments';
+import List from '../video_list/list';
+import Comments from '../comment_list_n_item/comments';
 const Detail = () => {
   const { id } = useParams();
   const [statistics_params, setStatistics_params] = useState('');

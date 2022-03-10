@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { beforeTimeMaker } from '../Utils';
+import { beforeTimeMaker } from '../../Utils';
 import style from './listItem.module.css';
 
 const ListItem = (props) => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import getYoutube from '../APIs/getYoutube';
-import useAxios from '../APIs/uesAxios';
-import List from './list';
-import SearchHeader from './searchHeader';
+import getYoutube from '../../APIs/getYoutube';
+import useAxios from '../../APIs/uesAxios';
+import List from '../video_list/list';
+import SearchHeader from '../search_header/searchHeader';
 import style from './main.module.css';
 import { useLocation, useParams } from 'react-router';
 

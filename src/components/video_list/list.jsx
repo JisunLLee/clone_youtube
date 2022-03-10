@@ -1,4 +1,4 @@
-import ListItem from './listItem';
+import ListItem from '../video_item/listItem';
 import style from './list.module.css';
 const List = (props) => {
   return (
