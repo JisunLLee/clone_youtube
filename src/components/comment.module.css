@@ -1,0 +1,44 @@
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.comment {
+  display: flex;
+}
+.channelImg_wrap {
+  height: 100%;
+  width: 40px;
+}
+
+.comment_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.comment_wrap div:first-child {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.datetime {
+  font-size: 13px;
+}
+
+.comment_wrap div:last-child {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+}
+
+.like_btn {
+  width: 16px;
+  margin-right: 3px;
+}
+.dislike_btn {
+  transform: rotate(0.5turn);
+  margin-top: 2px;
+}
+.owner_like {
+  width: 30px;
+}

@@ -1,0 +1,64 @@
+.body {
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  align-items: center;
+}
+
+.side {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search_wrap {
+  flex-grow: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.side_empty {
+  width: 4rem;
+}
+
+.youtube_btn,
+.search_btn {
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.youtube_btn:hover,
+.search_btn :hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.youtube_btn {
+  background-image: url(../../public/youtube.png);
+  width: 4.5rem;
+  height: 4rem;
+  background-color: transparent;
+}
+
+.search_input {
+  height: 60%;
+  flex-grow: 1;
+  border-radius: 0;
+}
+
+.search_wrap a {
+  height: 100%;
+}
+
+.search_btn {
+  margin-top: 13%;
+  height: 70%;
+  width: 4.5rem;
+  background-color: rgb(48, 48, 48);
+  background-size: 60%;
+  background-image: url(../../public/search.png);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
