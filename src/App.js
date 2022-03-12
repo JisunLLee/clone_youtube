@@ -3,12 +3,11 @@ import './App.css';
 import Main from './components/main/main';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Detail from './components/video_item_detail/detail';
-import YouTube from './service/youtube';
 import SearchHeader from './components/search_header/searchHeader';
 import { memo } from 'react';
 
-const App = memo(() => {
-  const youtube = new YouTube();
+const App = memo(({youtube}) => {
+
   return (
     <Router>
       <SearchHeader />

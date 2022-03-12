@@ -1,20 +1,8 @@
-import axios from 'axios';
-class YouTube {
-    constructor(){
-        this.youtube = axios.create({
-            baseURL:'https://www.googleapis.com/youtube/v3',
-            params: {
-                key: process.env.REACT_APP_YOUTUBE_API_KEY
-            }
-        })
-        this.getRequestOptions = {
-            method: 'get',
-            dataType: 'json',
-            redirect: 'follow'
-        }
 
+class YouTube {
+    constructor(httpClient){
+        this.youtube = httpClient;
     }
-    
 
     async mostPopular() {
         const params = {
@@ -58,26 +46,6 @@ class YouTube {
           console.log("comment", response);
           return response.data;
     }
-
-
-    async makeParams(params) {
-        if(!params) return;
-        let url = `/${params.kind}?&part=snippet` ;
-        for (var key in params) {
-            if(key !== 'kind') {
-                url = `${url}&${key}=${params[key]}`
-            }
-        }
-        console.log('url', url);
-        return  url;
-    }
-
-    useAxios({ url, method, body = null, headers = null }) {
-        if(url){
-            return axios[method](url, JSON.parse(headers), JSON.parse(body))
-        }
-    }
-
 }
 
 export default YouTube;
