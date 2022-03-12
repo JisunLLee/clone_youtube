@@ -23,7 +23,7 @@ const Main = memo(({ youtube }) => {
 
   return (
     <div className={style.main}>
-      {videos ? <List videos={videos.data.items} /> : <div>Loading...</div>}
+      {videos ? <List videos={videos.items} /> : <div>Loading...</div>}
     </div>
   );
 });

@@ -1,8 +1,12 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'https://www.googleapis.com/youtube/v3';
 class YouTube {
     constructor(){
-
+        this.youtube = axios.create({
+            baseURL:'https://www.googleapis.com/youtube/v3',
+            params: {
+                key: process.env.REACT_APP_YOUTUBE_API_KEY
+            }
+        })
         this.getRequestOptions = {
             method: 'get',
             dataType: 'json',
@@ -12,52 +16,53 @@ class YouTube {
     }
     
 
-    mostPopular() {
+    async mostPopular() {
         const params = {
-            kind: 'videos',
+            part: 'snippet',
             chart: 'mostPopular',
             regionCode: 'KR',
             maxResults: 25,
           }
-        // return this.makeParams(params);
-        const url = this.makeParams(params);
-        return this.useAxios({url, ...this.getRequestOptions})
+        const response = await this.youtube.get('videos', {params});
+        return response.data;
     }
 
-    search(query) {
+    async search(query) {
         const params = {    
-            kind: 'search',
             maxResults: 25,
             type: 'video',
+            part: 'snippet',
             q: query,
           }
-        const url = this.makeParams(params);
-        return this.useAxios({url, ...this.getRequestOptions})
+          const response = await this.youtube.get('search', {params});
+          console.log("search", response);
+          return response.data;
     }
 
-    detail(id) {
+    async detail(id) {
         const params = {
-            kind: 'videos',
             part: 'statistics',
             id: id,
           }
-        const url = this.makeParams(params);
-        return this.useAxios({url, ...this.getRequestOptions})
+          const response = await this.youtube.get('videos', {params});
+          console.log("detail", response);
+          return response.data;
     }
 
-    comment(id) {
+    async comment(id) {
         const params = {
-            kind: 'commentThreads',
+            part: 'snippet',
             videoId: id,
           }
-        const url = this.makeParams(params);
-        return this.useAxios({url, ...this.getRequestOptions})
+          const response = await this.youtube.get('commentThreads', {params});
+          console.log("comment", response);
+          return response.data;
     }
 
 
-    makeParams(params) {
+    async makeParams(params) {
         if(!params) return;
-        let url = `/${params.kind}?key=${process.env.REACT_APP_YOUTUBE_API_KEY}&part=snippet` ;
+        let url = `/${params.kind}?&part=snippet` ;
         for (var key in params) {
             if(key !== 'kind') {
                 url = `${url}&${key}=${params[key]}`

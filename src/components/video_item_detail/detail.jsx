@@ -13,17 +13,16 @@ const Detail = memo(({ youtube }) => {
   console.log('id', id);
 
   useEffect(() => {
-    const getData = async () => {
-      Promise.all([youtube.detail(id), youtube.comment(id)]).then(function (
-        results
-      ) {
-        setStatistics(results[0].data.items[0].statistics);
-        setSnippet(results[0].data.items[0].snippet);
-        setComments(results[1].data.items);
-      });
-    };
+    async function getData() {
+      const video_detail = await youtube.detail(id);
+      const video_comment = await youtube.comment(id);
+      setStatistics(video_detail.items[0].statistics);
+      setSnippet(location.state.video.snippet);
+      setComments(video_comment.items);
+    }
     getData();
   }, [location, id, youtube]);
+  console.log('snippet', snippet);
 
   return snippet ? (
     statistics ? (
@@ -54,7 +53,7 @@ const Detail = memo(({ youtube }) => {
                 <img alt="channel"></img>
                 <h3>{snippet.channelTitle}</h3>
               </div>
-              <div>{snippet.description}</div>
+              <div className={style.description}>{snippet.description}</div>
               <p></p>
             </div>
             {comments ? (
