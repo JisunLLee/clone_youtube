@@ -46,25 +46,28 @@ const Detail = memo(({ youtube }) => {
               )}
               <span> • </span>
               <span> {snippet.publishedAt.split('T')[0]}</span>
+              <hr />
             </div>
-            <hr />
+
             <div className={style.contents_wrap}>
               <div className={style.channel_wrap}>
                 <img alt="channel"></img>
                 <h3>{snippet.channelTitle}</h3>
               </div>
-              <div className={style.description}>{snippet.description}</div>
+              p<div className={style.description}>{snippet.description}</div>
               <p></p>
             </div>
+          </div>
+          <List videos={location.state.videos} />
+          <div>
+            <hr />
+            <h2>댓글 {statistics.commentCount}개</h2>
             {comments ? (
               <Comments comments={comments} />
             ) : (
               <div>Loading...</div>
             )}
           </div>
-          <aside>
-            <List className={style.list} videos={location.state.videos} />
-          </aside>
         </div>
       </article>
     ) : (
