@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import style from './searchHeader.module.css';
-const SearchHeader = (props) => {
+const SearchHeader = memo(() => {
+  console.log('SearchHeader');
   const [input, setInput] = useState();
   const navigate = useNavigate();
   const LinkToMain = () => {
@@ -11,7 +12,7 @@ const SearchHeader = (props) => {
     if (e.key === 'Enter') LinkToMain();
   };
   return (
-    <div className={style.body}>
+    <header className={style.body}>
       <div className={style.side}>
         <div className={style.side_empty}></div>
         <Link to="/">
@@ -28,8 +29,8 @@ const SearchHeader = (props) => {
         <button className={style.search_btn} onClick={LinkToMain} />
       </div>
       <div className={style.side} />
-    </div>
+    </header>
   );
-};
+});
 
 export default SearchHeader;

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useEffect, useState } from 'react';
 import List from '../video_list/list';
-import SearchHeader from '../search_header/searchHeader';
 import style from './main.module.css';
 import { useLocation } from 'react-router';
 
-const Main = ({ youtube }) => {
+const Main = memo(({ youtube }) => {
   const location = useLocation();
   const [videos, setVideos] = useState();
 
@@ -24,10 +23,9 @@ const Main = ({ youtube }) => {
 
   return (
     <div className={style.main}>
-      <SearchHeader />
       {videos ? <List videos={videos.data.items} /> : <div>Loading...</div>}
     </div>
   );
-};
+});
 
 export default Main;

@@ -10,12 +10,16 @@ const ListItem = (props) => {
     <Link
       style={{ textDecoration: 'none', color: 'black' }}
       to={`/detail/${props.video.id.videoId ?? props.video.id}`}
-      state={{ videos: props.videos }}
+      state={{ videos: props.videos, video: props.video }}
     >
       <li className={style.list_item}>
-        <img className={style.thumbnail} src={thumbnails.medium.url} />
+        <img
+          className={style.thumbnail}
+          alt="thumbnail"
+          src={thumbnails.medium.url}
+        />
         <div className={style.detail}>
-          <img className={style.channel_img} />
+          <img className={style.channel_img} alt="channel" />
           <div className={style.text_area}>
             <div className={style.title_box}>
               <h4 className={style.title}>{title}</h4>

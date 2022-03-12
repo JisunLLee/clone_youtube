@@ -26,7 +26,7 @@ const Comment = (props) => {
           <span>
             <img
               className={style.dislike_btn + ' ' + style.like_btn}
-              src="/like.png"
+              src="/images/like.png"
             />
           </span>
           <span className={style.owner_like}></span>
