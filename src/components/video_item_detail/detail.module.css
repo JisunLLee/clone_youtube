@@ -32,6 +32,18 @@ article {
 
 .channel_wrap {
   display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.channel {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 800;
 }
 
 .description {

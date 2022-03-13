@@ -6,6 +6,8 @@ import style from './listItem.module.css';
 const ListItem = (props) => {
   const { title, channelTitle, publishTime, thumbnails } = props.video.snippet;
   const time = beforeTimeMaker(publishTime);
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
   return (
     <Link
       style={{ textDecoration: 'none', color: 'black' }}
@@ -19,7 +21,14 @@ const ListItem = (props) => {
           src={thumbnails.medium.url}
         />
         <div className={style.detail}>
-          <img className={style.channel_img} alt="channel" />
+          <div
+            className={style.channel_img}
+            alt="channel"
+            style={{ backgroundColor: '#' + randomColor }}
+          >
+            {' '}
+            {channelTitle.split('')[0]}
+          </div>
           <div className={style.text_area}>
             <div className={style.title_box}>
               <h4 className={style.title}>{title}</h4>

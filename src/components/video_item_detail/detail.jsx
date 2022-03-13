@@ -11,7 +11,7 @@ const Detail = memo(({ youtube }) => {
   const [comments, setComments] = useState();
   const location = useLocation();
   console.log('id', id);
-
+  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
   useEffect(() => {
     async function getData() {
       const video_detail = await youtube.detail(id);
@@ -51,7 +51,13 @@ const Detail = memo(({ youtube }) => {
 
             <div className={style.contents_wrap}>
               <div className={style.channel_wrap}>
-                <img alt="channel"></img>
+                <div
+                  alt="channel"
+                  className={style.channel}
+                  style={{ backgroundColor: '#' + randomColor }}
+                >
+                  {snippet.channelTitle.split('')[0]}
+                </div>
                 <h3>{snippet.channelTitle}</h3>
               </div>
               p<div className={style.description}>{snippet.description}</div>

@@ -2,13 +2,18 @@ import React from 'react';
 import { beforeTimeMaker } from '../../Utils';
 import style from './comment.module.css';
 const Comment = (props) => {
-  const { likeCount, authorDisplayName, publishedAt, textDisplay } =
-    props.comment.topLevelComment.snippet;
+  const {
+    likeCount,
+    authorDisplayName,
+    authorProfileImageUrl,
+    publishedAt,
+    textDisplay,
+  } = props.comment.topLevelComment.snippet;
   const datetime = beforeTimeMaker(publishedAt);
   return (
     <div className={style.comment}>
       <div className={style.channelImg_wrap}>
-        <img />
+        <img src={authorProfileImageUrl} />
       </div>
       <div className={style.comment_wrap}>
         <div>

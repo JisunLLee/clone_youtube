@@ -9,9 +9,11 @@
 }
 .channelImg_wrap {
   height: 100%;
-  width: 40px;
+  width: 60px;
 }
-
+.channelImg_wrap img {
+  border-radius: 50%;
+}
 .comment_wrap {
   display: flex;
   flex-direction: column;
